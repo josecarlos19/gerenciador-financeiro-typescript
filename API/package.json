@@ -25,7 +25,7 @@
     "dev": "ts-node-dev --transpile-only src/server.ts",
     "typeorm": "ts-node-dev node_modules/.bin/typeorm",
     "lint": "eslint . --fix",
-    "test": "NODE_ENV=test jest --verbose --runInBand --coverage"
+    "test": "NODE_ENV=test jest --verbose --runInBand"
   },
   "devDependencies": {
     "@linnify/typeorm-factory": "^1.0.12",

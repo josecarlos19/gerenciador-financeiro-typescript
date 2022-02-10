@@ -157,7 +157,7 @@ describe("Transactions", () => {
 		expect(response.body.amount).toBe(+100);
 	});
 
-	it("should be able show a transaction using it's ID", async () => {
+	it("should be able to show a transaction using it's ID", async () => {
 		const response = await request(app)
 			.get(`/transactions/${transaction.id}`)
 			.set("Authorization", `Bearer ${jwt.sign({ id: user.id }, process.env.APP_SECRET)}`)
@@ -169,7 +169,7 @@ describe("Transactions", () => {
 		expect(response.body).not.toBe(null);
 	});
 
-	it("should not be able show a transaction using it's ID using other user", async () => {
+	it("should not be able to show a transaction using it's ID using other user", async () => {
 		const response = await request(app)
 			.get(`/transactions/${transaction.id}`)
 			.set("Authorization", `Bearer ${jwt.sign({ id: user2.id }, process.env.APP_SECRET)}`)
@@ -216,7 +216,7 @@ describe("Transactions", () => {
 		expect(response.status).toBe(400);
 	});
 
-	it("should be to delete a transaction", async () => {
+	it("should be able to delete a transaction", async () => {
 		const response = await request(app)
 			.delete(`/transactions/${transaction.id}`)
 			.set("Authorization", `Bearer ${jwt.sign({ id: user.id }, process.env.APP_SECRET)}`);
@@ -224,7 +224,7 @@ describe("Transactions", () => {
 		expect(response.status).toBe(204);
 	});
 
-	it("should not be to delete a transaction of other user", async () => {
+	it("should not be able to delete a transaction of other user", async () => {
 		const response = await request(app)
 			.delete(`/transactions/${transaction.id}`)
 			.set("Authorization", `Bearer ${jwt.sign({ id: user2.id }, process.env.APP_SECRET)}`);

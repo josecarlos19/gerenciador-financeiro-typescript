@@ -22,7 +22,7 @@ describe("User", () => {
 		await connection.close();
 	});
 
-	it("should be able create a new user", async () => {
+	it("should be able to create a new user", async () => {
 		const response = await request(app)
 			.post("/users")
 			.send({
@@ -69,7 +69,7 @@ describe("User", () => {
 		expect(await bcrypt.compare(Newpassword, response.body.password)).toBe(true);
 	});
 
-	it("should be able get all user registered", async () => {
+	it("should be able to get all user registered", async () => {
 		const userFactory: UserFactory = new UserFactory();
 
 		await userFactory.create();

@@ -12,15 +12,11 @@ import { Transfer } from "../../../src/entities/Transfer";
 let user1: User;
 let origin_account1: Account;
 let destiny_account1: Account;
-let transaction1_O: Transaction;
-let transaction1_D: Transaction;
 let transfer1: Transfer;
 
 let user2: User;
 let origin_account2: Account;
 let destiny_account2: Account;
-let transaction2_O: Transaction;
-let transaction2_D: Transaction;
 let transfer2: Transfer;
 
 describe("Transfers", () => {
@@ -56,7 +52,7 @@ describe("Transfers", () => {
 			amount: 100
 		});
 
-		transaction1_O = await transactionFactory.create({
+		await transactionFactory.create({
 			account_id: origin_account1.id,
 			description: "Transfer from Acc Origin 1",
 			amount: 100,
@@ -64,7 +60,7 @@ describe("Transfers", () => {
 			transfer_id: transfer1.id
 		});
 
-		transaction1_D = await transactionFactory.create({
+		await transactionFactory.create({
 			account_id: destiny_account1.id,
 			description: "Transfer to Acc Destiny 1",
 			amount: -100,
@@ -94,7 +90,7 @@ describe("Transfers", () => {
 			amount: 200
 		});
 
-		transaction2_O = await transactionFactory.create({
+		await transactionFactory.create({
 			account_id: origin_account2.id,
 			description: "Transfer from Acc Origin 2",
 			amount: 200,
@@ -102,7 +98,7 @@ describe("Transfers", () => {
 			transfer_id: transfer2.id
 		});
 
-		transaction2_D = await transactionFactory.create({
+		await transactionFactory.create({
 			account_id: destiny_account2.id,
 			description: "Transfer to Acc Destiny 2",
 			amount: -200,
@@ -357,7 +353,7 @@ describe("Transfers", () => {
 
 	});
 
-	it("should a able remove a transfer", async () => {
+	it("should be able to remove a transfer", async () => {
 		const response = await request(app)
 			.delete(`/transfers/${transfer1.id}`)
 			.set("Authorization", `Bearer ${jwt.sign({ id: user1.id }, process.env.APP_SECRET)}`);
@@ -365,7 +361,7 @@ describe("Transfers", () => {
 		expect(response.status).toBe(204);
 	});
 
-	it("both should be with status TRUE", async () => {
+	it("both responses should return with status TRUE", async () => {
 		const response = await request(app)
 			.post("/transfers")
 			.set("Authorization", `Bearer ${jwt.sign({ id: user1.id }, process.env.APP_SECRET)}`)
